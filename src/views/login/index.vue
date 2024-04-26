@@ -23,27 +23,35 @@
 </template>
 <script lang="ts" setup>
 import { reactive, toRefs, ref } from 'vue'
+import {useRouter,useRoute} from 'vue-router'
 import { logins } from '@/api/index'
+const router=useRouter();
+const route=useRoute();
 const state = reactive({
   form: {
     userName: '',
     passWord: ''
   }
 })
-const rules = {
+const rules = ref({
   userName: [{ required: true, message: '请填写用户名' }],
   passWord: [
     { required: true, message: '请填写密码' },
     { pattern: /^\d{6}$/, message: '密码格式错误' }
   ]
-}
+});
 const { form } = toRefs(state)
 const onSubmit = async () => {
-  const params = {
-    ...state.form
-  }
-  const res = await logins(params)
-  console.log(res)
+const params={};
+router.push({name:'home',query:{
+  ...route.query,
+  ...params
+}}) 
+  // const params = {
+  //   ...state.form
+  // }
+  // const res = await logins(params)
+  // console.log(res)
 }
 </script>
 <style lang="scss" scoped></style>

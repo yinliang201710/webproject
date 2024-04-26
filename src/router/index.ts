@@ -30,6 +30,11 @@ const router = createRouter({
       component: () => import('../views/home/index.vue'),
       children: [
         {
+          path: '',
+          name: 'footer',
+          component: () => import('../views/home/footer/index.vue')
+        },
+        {
           path: 'busisese',
           name: 'busisese',
           component: () => import('../views/home/busisese/index.vue')

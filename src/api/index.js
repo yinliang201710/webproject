@@ -3,7 +3,7 @@ const logins = (op) => {
   const params = { ...op }
   return request({
     method: 'post',
-    url: 'service/index',
+    url: '/service/index',
     data: params
   })
 }
