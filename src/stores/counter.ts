@@ -19,3 +19,10 @@ export const Apptore = defineStore('app', () => {
   const appid = ref('datafactory')
   return { count, doubleCount, increment, appid }
 })
+export const Token=defineStore('token', () => {
+  const token = ref(0)
+  function updateToken(token) {
+    token.value=token;
+  }
+  return { token, updateToken }
+})

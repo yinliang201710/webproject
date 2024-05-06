@@ -1,5 +1,9 @@
 <template>
-  <van-nav-bar title="登录" />
+  <van-nav-bar title="登录">
+        <template v-slot:left>
+           <van-icon name="cross" @click="router.push('/home/setting')"/>
+        </template>
+  </van-nav-bar>
   <van-form @submit="onSubmit">
     <van-field
       v-model="form.userName"
@@ -25,8 +29,11 @@
 import { reactive, toRefs, ref } from 'vue'
 import {useRouter,useRoute} from 'vue-router'
 import { logins } from '@/api/index'
+import { Token } from '@/stores/counter'
+import {setCookies} from '@/utils/cookie'
 const router=useRouter();
 const route=useRoute();
+const userInfo=Token();
 const state = reactive({
   form: {
     userName: '',
@@ -42,10 +49,10 @@ const rules = ref({
 });
 const { form } = toRefs(state)
 const onSubmit = async () => {
-const params={};
-router.push({name:'home',query:{
-  ...route.query,
-  ...params
+setCookies('userInfo',JSON.stringify(userInfo));
+router.push({name:'userInfo',query:{
+  // ...route.query,
+  // ...userInfo
 }}) 
   // const params = {
   //   ...state.form

@@ -35,10 +35,25 @@ const router = createRouter({
           component: () => import('../views/home/footer/index.vue')
         },
         {
-          path: 'busisese',
-          name: 'busisese',
-          component: () => import('../views/home/busisese/index.vue')
+          path: 'userInfo',
+          name: 'userInfo',
+          component: () => import('../views/home/userInfo/index.vue')
+        },
+        {
+          path: 'search',
+          name: 'search',
+          component: () => import('../views/home/search/index.vue')
+        },
+        {
+          path: 'friends',
+          name: 'friends',
+          component: () => import('../views/home/friends/index.vue')
+        }, {
+          path: 'setting',
+          name: 'setting',
+          component: () => import('../views/home/setting/index.vue')
         }
+
       ]
     }
   ]
