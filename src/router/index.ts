@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'index',
-      redirect: { name: 'login' }
+      redirect: { name: 'header' }
     },
     {
       path: '/view',
@@ -48,13 +48,18 @@ const router = createRouter({
           path: 'friends',
           name: 'friends',
           component: () => import('../views/home/friends/index.vue')
-        }, {
+        },
+        {
           path: 'setting',
           name: 'setting',
           component: () => import('../views/home/setting/index.vue')
         }
-
       ]
+    },
+    {
+      path: '/draw',
+      name: 'draw',
+      component: () => import('../views/grid/draw.vue')
     }
   ]
 })

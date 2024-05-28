@@ -10,7 +10,7 @@ export const useCounterStore = defineStore('counter', () => {
 
   return { count, doubleCount, increment }
 })
-export const Apptore = defineStore('app', () => {
+export const useApptore = defineStore('app', () => {
   const count = ref(0)
   const doubleCount = computed(() => count.value * 2)
   function increment() {
@@ -19,10 +19,10 @@ export const Apptore = defineStore('app', () => {
   const appid = ref('datafactory')
   return { count, doubleCount, increment, appid }
 })
-export const Token=defineStore('token', () => {
+export const useTokenStore = defineStore('token', () => {
   const token = ref(0)
-  function updateToken(token) {
-    token.value=token;
+  function updateToken(token: { value: any }) {
+    token.value = token
   }
   return { token, updateToken }
 })

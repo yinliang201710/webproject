@@ -1,8 +1,8 @@
 <template>
   <van-nav-bar title="登录">
-        <template v-slot:left>
-           <van-icon name="cross" @click="router.push('/home/setting')"/>
-        </template>
+    <template v-slot:left>
+      <van-icon name="cross" @click="router.back()" />
+    </template>
   </van-nav-bar>
   <van-form @submit="onSubmit">
     <van-field
@@ -27,13 +27,13 @@
 </template>
 <script lang="ts" setup>
 import { reactive, toRefs, ref } from 'vue'
-import {useRouter,useRoute} from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { logins } from '@/api/index'
-import { Token } from '@/stores/counter'
-import {setCookies} from '@/utils/cookie'
-const router=useRouter();
-const route=useRoute();
-const userInfo=Token();
+import { useTokenStore } from '@/stores/counter'
+import { setCookies } from '@/utils/cookie'
+const router = useRouter()
+const route = useRoute()
+const userInfo = useTokenStore()
 const state = reactive({
   form: {
     userName: '',
@@ -46,14 +46,17 @@ const rules = ref({
     { required: true, message: '请填写密码' },
     { pattern: /^\d{6}$/, message: '密码格式错误' }
   ]
-});
+})
 const { form } = toRefs(state)
 const onSubmit = async () => {
-setCookies('userInfo',JSON.stringify(userInfo));
-router.push({name:'userInfo',query:{
-  // ...route.query,
-  // ...userInfo
-}}) 
+  setCookies('userInfo', JSON.stringify(userInfo))
+  router.push({
+    name: 'userInfo',
+    query: {
+      // ...route.query,
+      // ...userInfo
+    }
+  })
   // const params = {
   //   ...state.form
   // }
